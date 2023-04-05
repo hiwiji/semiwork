@@ -269,7 +269,7 @@
 .BNitemName{
     flex-basis: 20%;
     padding: 5px;
-    font-size: 12px;
+    font-size: 14px;
     position: relative;
     /* z-index : -1; */
 
@@ -314,6 +314,7 @@
     border: 1px solid rgb(181, 181, 181);
     border-radius: 3px;
     color: white;
+    cursor: pointer;
 }
 
 /* 오른쪽버튼 설정 */
@@ -323,6 +324,7 @@
     border: 1px solid rgb(181, 181, 181);
     border-radius: 3px;
     color: white;
+     cursor: pointer;
 }
 
 
@@ -354,16 +356,16 @@
 
 
 
-/* 자세히보기 오쏘뮬이윤하이하이 */
+/* 검은화면 글씨 설정 */
 .BNitem > a > .BNitemPic > figcaption {
     position: absolute;
     bottom: 250px;
-    left: 140px;
+    left: 10px;
     /* top: 50px; */
     margin : auto;
     z-index: 1;
     color : #fff;
-    font-size: 12px;
+    font-size: 11px;
     text-align : center;
     transition: all .5s;
     

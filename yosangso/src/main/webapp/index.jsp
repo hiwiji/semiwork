@@ -1,6 +1,9 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +31,18 @@
     
 </head>
 <body>
+<sql:setDataSource var= "conn" 
+	driver = "oracle.jdbc.driver.OracleDriver"
+	url="jdbc:oracle:thin:@//112.220.137.37:1521/xe"
+	user="yosangso"
+	password="yosangso"
+/>
+
+
+<sql:query var ="rs" dataSource="${conn}">
+select * from product
+</sql:query>
+
     <!-- 헤더, 컨텐츠 -->
     <main>
     
@@ -80,22 +95,24 @@
                     <!-- 2-2 베스트 제품 -->
                     <div class="bestItem"> 
 
-                            
+					
+						                        
                         <!-- 베스트제품1 -->
-                        <div class="BNitem Bitem1">    
-                            <a href="#">    
+                     
+                        <div class="BNitem Bitem1">  
+                            <a href="#">  
                                 <div class="BNitemPic bestItem1Pic"> 
-                                    <figcaption>베스트제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
-                                        alt="제품사진" id="bestItemPhoto1">
+                                    <figcaption>"${rs.rows[0]['PRODUCT_NM']}"</figcaption> 
+                                    <img src="resources/image/product/${rs.rows[28]['PRODUCT_NM']}.jpg"  
+                                        alt="제품사진" id="bestItemPhot1"> 
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[0]['PRODUCT_NM']}</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem1Price">75,000원</div>  
-                        </div>                        
+                                <div class="BNitemPrice bestItem1Price"><fmt:formatNumber value="${rs.rows[0]['PRICE']}" pattern="#,###"/>원</div>
+                        </div>                          
 
                                                  
                         <!-- 베스트제품2 -->  
@@ -103,7 +120,7 @@
                             <a href="#">  
                                 <div class="BNitemPic bestItem2Pic"> 
                                     <figcaption>베스트제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> 
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="resources/image/product/${rs.rows[10]['PRODUCT_NM']}.jpg"  
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
                             </a>
@@ -111,7 +128,7 @@
                                     <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem2Price">75,000원</div>
+                                <div class="BNitemPrice bestItem2Price"><fmt:formatNumber value="${rs.rows[1]['PRICE']}" pattern="#,###"/>원</div>
                         </div>                       
 
 
@@ -120,7 +137,7 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
                                     <figcaption>베스트제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="resources/image/product/${rs.rows[0]['PRODUCT_NM']}.jpg" 
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
                             </a>

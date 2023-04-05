@@ -20,7 +20,7 @@ public class ProductService {
 	/** 상품 정보 service
 	 * @return
 	 */
-	public List<Product> selectProduct(int productNo) {
+	public List<Product> selectProduct(int productNo) throws Exception {
 		Connection conn = getConnection();
 		
 		List<Product> list = dao.selectProduct(conn, productNo);
@@ -29,7 +29,35 @@ public class ProductService {
 		
 		return list;
 	}
+
+	/** 전제품 조회 service
+	 * @param productNo
+	 * @return allProductList
+	 */
+	/*public List<Product> allProduct(int productNo)throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Product> allProductList = dao.allProduct(conn, productNo);
+		
+		close(conn);
+		
+		return allProductList;
+	}*/
+
+	public List<Product> allProudct() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<Product> allProductList = dao.allProduct(conn);
+		
+		close(conn);
 	
+		
+		return allProductList;
+	}
+
+
 	
 	
 	

@@ -3,8 +3,23 @@
 <properties>
 	<comment>product-sql.xml</comment>
 
-	<entry key=""></entry>
-	<entry key=""></entry>
+
+
+	<!-- 전제품 조회 -->
+	<!--  <entry key="allProductList">
+	SELECT PRODUCT_IMAGE, PRODUCT_NM, PRICE
+	FROM PRODUCT
+	WHERE PRODUCT_NO = ?;
+	</entry>-->
+	
+	
+	<entry key="allProudct">
+		SELECT PRODUCT_NO, PRODUCT_NM, PRICE
+		FROM PRODUCT;
+	</entry>
+	
+	
+	
 	<entry key=""></entry>
 	<entry key=""></entry>
 	<entry key=""></entry>

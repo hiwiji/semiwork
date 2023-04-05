@@ -24,6 +24,14 @@ public class Product {
 	private String productImage;
 	private String part;
 	
-	
-	
+
+
+	public Product(int productNo, String productName, int price) {
+		
+		this.productNo = productNo;
+		this.productName = productName;
+		this.price = price;
+
+	}
 }
+	

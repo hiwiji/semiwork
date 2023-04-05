@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html>
@@ -14,6 +16,7 @@
     <!-- 제품리스트 css -->
     <link rel="stylesheet" href="${contextPath}/resources/css/product/allProduct.css">
     <script src="https://kit.fontawesome.com/881d1deef7.js" crossorigin="anonymous"></script>
+    
     <title>allProduct</title>
     
  
@@ -24,6 +27,17 @@
     
 </head>
 <body>
+<sql:setDataSource var= "all" 
+	driver = "oracle.jdbc.driver.OracleDriver"
+	url="jdbc:oracle:thin:@//112.220.137.37:1521/xe"
+	user="yosangso"
+	password="yosangso"
+/>
+
+<sql:query var ="rs" dataSource="${all}">
+select * from product
+</sql:query>
+
     <!-- 헤더, 컨텐츠 -->
     <main>
         
@@ -68,6 +82,8 @@
 
                 <!-- 2-2 제품 목록 -->
                 <div class="bestItem">
+                
+                
                     
                     <!-- 1행 -->
                     <div class="line row1">
@@ -75,34 +91,38 @@
                         <div class="BNitem Bitem1">    
                             <a href="#">    
                                 <div class="BNitemPic bestItem2Pic">
-                                    <figcaption>제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="${contextPath}/resources/image/index/제품_나우푸드c1000.jpg" 
-                                        alt="제품사진" id="bestItemPhoto1">
+                                    <figcaption>${rs.rows[0]['PRODUCT_NM']}<br><hr>비타민D 함유</figcaption>
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[0]['PRODUCT_NM']}.jpg"
+                                     alt="제품사진" id="bestItemPhoto1">
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[0]['PRODUCT_NM']}</a>  
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem1Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem1Price">
+                                	<fmt:formatNumber value="${rs.rows[0]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>                        
 
-                                                    <!-- ul -->
-                        <!-- 제품2 -->  <!-- .gallerylist-->
-                        <div class="BNitem Bitem2">  <!-- li 2-->
-                            <a href="#">  <!-- a 태그 -->
-                                <div class="BNitemPic bestItem2Pic"> <!-- .screen -->
-                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> <!-- top -->
-                                    <img src="${contextPath}/resources/image/index/제품_나우푸드c1000.jpg" 
+                                                  
+                        <!-- 제품2 --> 
+                        <div class="BNitem Bitem2"> 
+                            <a href="#">  
+                                <div class="BNitemPic bestItem2Pic">
+                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[1]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem2Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>
+                                    <a href="#">${rs.rows[1]['PRODUCT_NM']}</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem2Price">75,000원</div>
-                        </div>                       <!-- /li 1-->
+                                <div class="BNitemPrice bestItem2Price">
+                                	<fmt:formatNumber value="${rs.rows[1]['PRICE']}" pattern="#,###"/>원
+                                </div>
+                        </div>                     
 
 
                         <!-- 제품3 -->
@@ -110,16 +130,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
                                     <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="${contextPath}/resources/image/index/제품_나우푸드c1000.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[2]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem3Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[2]['PRODUCT_NM']}</a>  
                                 </div>
 
-                                <div class="BNitemPrice bestItem3Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem3Price">
+                                	<fmt:formatNumber value="${rs.rows[2]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>
 
 
@@ -128,16 +150,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
                                     <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="${contextPath}/resources/image/index/제품_나우푸드c1000.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[3]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분) </a>
+                                    <a href="#">${rs.rows[3]['PRODUCT_NM']}</a>
                                 </div>        
 
-                                <div class="BNitemPrice bestItem4Price">75,000원</div>
+                                <div class="BNitemPrice bestItem4Price">
+                                	<fmt:formatNumber value="${rs.rows[3]['PRICE']}" pattern="#,###"/>원
+                                </div>
                         </div>
                         
                     </div>
@@ -149,33 +173,37 @@
                             <a href="#">    
                                 <div class="BNitemPic bestItem1Pic"> 
                                     <figcaption>제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="${contextPath}/resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[4]['PRODUCT_NM']}.jpg" 
                                         alt="제품사진" id="bestItemPhoto1">
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[4]['PRODUCT_NM']}</a>  
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem1Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem1Price">
+                                	<fmt:formatNumber value="${rs.rows[4]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>                        
 
-                                                    <!-- ul -->
-                        <!-- 제품2 -->  <!-- .gallerylist-->
-                        <div class="BNitem Bitem2">  <!-- li 2-->
-                            <a href="#">  <!-- a 태그 -->
-                                <div class="BNitemPic bestItem2Pic"> <!-- .screen -->
-                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> <!-- top -->
-                                    <img src="${contextPath}/resources/image/index/제품_오쏘뮬.jpg"
+                                                    
+                        <!-- 제품2 -->  
+                        <div class="BNitem Bitem2">  
+                            <a href="#">  
+                                <div class="BNitemPic bestItem2Pic">
+                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[5]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem2Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>
+                                    <a href="#">${rs.rows[5]['PRODUCT_NM']}</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem2Price">75,000원</div>
-                        </div>                       <!-- /li 1-->
+                                <div class="BNitemPrice bestItem2Price">
+                                	<fmt:formatNumber value="${rs.rows[5]['PRICE']}" pattern="#,###"/>원
+                                </div>
+                        </div>                    
 
 
                         <!-- 제품3 -->
@@ -183,16 +211,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
                                     <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="${contextPath}/resources/image/index/제품_오쏘뮬.jpg"
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[6]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem3Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[6]['PRODUCT_NM']}</a>  
                                 </div>
 
-                                <div class="BNitemPrice bestItem3Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem3Price">
+                                	<fmt:formatNumber value="${rs.rows[6]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>
 
 
@@ -201,16 +231,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
                                     <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="${contextPath}/resources/image/index/제품_오쏘뮬.jpg"
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[7]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분) </a>
+                                    <a href="#">${rs.rows[7]['PRODUCT_NM']}</a>
                                 </div>        
 
-                                <div class="BNitemPrice bestItem4Price">75,000원</div>
+                                <div class="BNitemPrice bestItem4Price">
+                                	<fmt:formatNumber value="${rs.rows[7]['PRICE']}" pattern="#,###"/>원
+                                </div>
                         </div>
                     </div>
 
@@ -221,33 +253,37 @@
                             <a href="#">    
                                 <div class="BNitemPic bestItem1Pic"> 
                                     <figcaption>제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg"
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[8]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto1">
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[8]['PRODUCT_NM']}</a>  
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem1Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem1Price">
+                                	<fmt:formatNumber value="${rs.rows[8]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>                        
 
-                                                    <!-- ul -->
-                        <!-- 제품2 -->  <!-- .gallerylist-->
-                        <div class="BNitem Bitem2">  <!-- li 2-->
-                            <a href="#">  <!-- a 태그 -->
-                                <div class="BNitemPic bestItem2Pic"> <!-- .screen -->
-                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> <!-- top -->
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg"
+                                                    
+                        <!-- 제품2 -->  
+                        <div class="BNitem Bitem2"> 
+                            <a href="#"> 
+                                <div class="BNitemPic bestItem2Pic"> 
+                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[9]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem2Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>
+                                    <a href="#">${rs.rows[9]['PRODUCT_NM']}</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem2Price">75,000원</div>
-                        </div>                       <!-- /li 1-->
+                                <div class="BNitemPrice bestItem2Price">
+                                	<fmt:formatNumber value="${rs.rows[9]['PRICE']}" pattern="#,###"/>원
+                                </div>
+                        </div>                  
 
 
                         <!-- 제품3 -->
@@ -255,16 +291,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
                                     <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg"
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[10]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem3Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[10]['PRODUCT_NM']}</a>  
                                 </div>
 
-                                <div class="BNitemPrice bestItem3Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem3Price">
+                                	<fmt:formatNumber value="${rs.rows[10]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>
 
 
@@ -273,16 +311,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
                                     <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg"
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[11]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분) </a>
+                                    <a href="#">${rs.rows[11]['PRODUCT_NM']}</a>
                                 </div>        
 
-                                <div class="BNitemPrice bestItem4Price">75,000원</div>
+                                <div class="BNitemPrice bestItem4Price">
+                                	<fmt:formatNumber value="${rs.rows[11]['PRICE']}" pattern="#,###"/>원
+                                </div>
                         </div>
                     </div>
 
@@ -293,33 +333,37 @@
                             <a href="#">    
                                 <div class="BNitemPic bestItem1Pic"> 
                                     <figcaption>제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg"
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[12]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto1">
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[12]['PRODUCT_NM']}</a>  
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem1Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem1Price">
+                                	<fmt:formatNumber value="${rs.rows[12]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>                        
 
-                                                    <!-- ul -->
-                        <!-- 제품2 -->  <!-- .gallerylist-->
-                        <div class="BNitem Bitem2">  <!-- li 2-->
+                                                    
+                        <!-- 제품2 --> 
+                        <div class="BNitem Bitem2"> 
                             <a href="#">  <!-- a 태그 -->
-                                <div class="BNitemPic bestItem2Pic"> <!-- .screen -->
-                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> <!-- top -->
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg"
+                                <div class="BNitemPic bestItem2Pic"> 
+                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[13]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem2Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>
+                                    <a href="#">${rs.rows[13]['PRODUCT_NM']}</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem2Price">75,000원</div>
-                        </div>                       <!-- /li 1-->
+                                <div class="BNitemPrice bestItem2Price">
+                                	<fmt:formatNumber value="${rs.rows[13]['PRICE']}" pattern="#,###"/>원
+                                </div>
+                        </div>                     
 
 
                         <!-- 제품3 -->
@@ -327,16 +371,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
                                     <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[14]['PRODUCT_NM']}.jpg" 
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem3Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[14]['PRODUCT_NM']}</a>  
                                 </div>
 
-                                <div class="BNitemPrice bestItem3Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem3Price">
+                                	<fmt:formatNumber value="${rs.rows[14]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>
 
 
@@ -345,16 +391,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
                                     <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[15]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분) </a>
+                                    <a href="#">${rs.rows[15]['PRODUCT_NM']}</a>
                                 </div>        
 
-                                <div class="BNitemPrice bestItem4Price">75,000원</div>
+                                <div class="BNitemPrice bestItem4Price">
+                                	<fmt:formatNumber value="${rs.rows[15]['PRICE']}" pattern="#,###"/>원
+                                </div>
                         </div>
                     </div>
 
@@ -365,33 +413,37 @@
                             <a href="#">    
                                 <div class="BNitemPic bestItem1Pic"> 
                                     <figcaption>제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[16]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto1">
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[16]['PRODUCT_NM']}</a>  
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem1Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem1Price">
+                                	<fmt:formatNumber value="${rs.rows[16]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>                        
 
-                                                    <!-- ul -->
-                        <!-- 제품2 -->  <!-- .gallerylist-->
-                        <div class="BNitem Bitem2">  <!-- li 2-->
+                                                   
+                        <!-- 제품2 -->
+                        <div class="BNitem Bitem2"> 
                             <a href="#">  <!-- a 태그 -->
-                                <div class="BNitemPic bestItem2Pic"> <!-- .screen -->
-                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> <!-- top -->
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                <div class="BNitemPic bestItem2Pic">
+                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[17]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem2Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>
+                                    <a href="#">${rs.rows[17]['PRODUCT_NM']}</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem2Price">75,000원</div>
-                        </div>                       <!-- /li 1-->
+                                <div class="BNitemPrice bestItem2Price">
+                                	<fmt:formatNumber value="${rs.rows[17]['PRICE']}" pattern="#,###"/>원
+                                </div>
+                        </div>                       
 
 
                         <!-- 제품3 -->
@@ -399,16 +451,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
                                     <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="/assets/제품_오쏘뮬.jpg"
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[18]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem3Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[18]['PRODUCT_NM']}</a>  
                                 </div>
 
-                                <div class="BNitemPrice bestItem3Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem3Price">
+                                	<fmt:formatNumber value="${rs.rows[18]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>
 
 
@@ -417,16 +471,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
                                     <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[19]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분) </a>
+                                    <a href="#">${rs.rows[19]['PRODUCT_NM']}</a>
                                 </div>        
 
-                                <div class="BNitemPrice bestItem4Price">75,000원</div>
+                                <div class="BNitemPrice bestItem4Price">
+                                	<fmt:formatNumber value="${rs.rows[19]['PRICE']}" pattern="#,###"/>원
+                                </div>
                         </div>
                     </div>
 
@@ -437,15 +493,17 @@
                             <a href="#">    
                                 <div class="BNitemPic bestItem1Pic"> 
                                     <figcaption>제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[20]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto1">
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[20]['PRODUCT_NM']}</a>  
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem1Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem1Price">
+                                	<fmt:formatNumber value="${rs.rows[20]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>                        
 
                                                   
@@ -454,16 +512,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem2Pic"> 
                                     <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[21]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
                             </a>
                                 <div class="BNitemName bestItem2Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>
+                                    <a href="#">${rs.rows[21]['PRODUCT_NM']}</a>
                                 </div> 
                             
-                                <div class="BNitemPrice bestItem2Price">75,000원</div>
-                        </div>                       <!-- /li 1-->
+                                <div class="BNitemPrice bestItem2Price">
+                                	<fmt:formatNumber value="${rs.rows[21]['PRICE']}" pattern="#,###"/>원
+                                </div>
+                        </div>                       
 
 
                         <!-- 제품3 -->
@@ -471,16 +531,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
                                     <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <<img src="${contextPath}/resources/image/product/${rs.rows[22]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem3Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분)</a>  
+                                    <a href="#">${rs.rows[22]['PRODUCT_NM']}</a>  
                                 </div>
 
-                                <div class="BNitemPrice bestItem3Price">75,000원</div>  
+                                <div class="BNitemPrice bestItem3Price">
+                                	<fmt:formatNumber value="${rs.rows[22]['PRICE']}" pattern="#,###"/>원
+                                </div>  
                         </div>
 
 
@@ -489,16 +551,18 @@
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
                                     <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
-                                    <img src="resources/image/index/제품_오쏘뮬.jpg" 
+                                    <img src="${contextPath}/resources/image/product/${rs.rows[23]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>
                             </a>
 
                                 <div class="BNitemName bestItem1Name">
-                                    <a href="#">[오쏘뮬] 오쏘뮬 이뮨 멀티비타민&미네랄 14입+1입 증정 기획 (2주분) </a>
+                                    <a href="#">${rs.rows[23]['PRODUCT_NM']}</a>
                                 </div>        
 
-                                <div class="BNitemPrice bestItem4Price">75,000원</div>
+                                <div class="BNitemPrice bestItem4Price">
+                                	<fmt:formatNumber value="${rs.rows[23]['PRICE']}" pattern="#,###"/>원
+                                </div>
                         </div>
                     </div>
                 
@@ -513,10 +577,8 @@
 
                     <!-- 왼쪽 화살표버튼 -->
                     <div id="numListBtnBox">
-                        <button type="button" id="movePrev">
-                            <span style="color: black;">
-                                <i class="fa-solid fa-less-than"></i>
-                            </span>
+                        <button type="button" id="movePrev" class="fa-solid fa-less-than"
+                        	style="color:black" onclick="alert('')">
                         </button>
                     </div>
                     
@@ -528,12 +590,12 @@
 
                     <!-- 오른쪽 화살표 -->
                     <div id="numListBtnBox2">
-                        <button type="button" id="moveNext">
-                           <span style="color: black;">
-                                <i class="fa-solid fa-greater-than"></i>
-                           </span> 
+                        <button type="button" id="moveNext" class="fa-solid fa-greater-than" 
+                        	style="color:black" onclick="alert('test')">
                         </button>
                     </div>
+                    
+                 
                    
                 </div>
                
