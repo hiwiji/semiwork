@@ -90,8 +90,8 @@ select * from product
                         <!--제품1 -->
                         <div class="BNitem Bitem1">    
                             <a href="#">    
-                                <div class="BNitemPic bestItem2Pic">
-                                    <figcaption>${rs.rows[0]['PRODUCT_NM']}<br><hr>비타민D 함유</figcaption>
+                                <div class="BNitemPic bestItem1Pic">
+                                    <figcaption>${rs.rows[0]['PRODUCT_NM']}<hr> ${rs.rows[0]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[0]['PRODUCT_NM']}.jpg"
                                      alt="제품사진" id="bestItemPhoto1">
                                 </div>
@@ -110,7 +110,7 @@ select * from product
                         <div class="BNitem Bitem2"> 
                             <a href="#">  
                                 <div class="BNitemPic bestItem2Pic">
-                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <figcaption>${rs.rows[1]['PRODUCT_NM']}<hr> ${rs.rows[1]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[1]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
@@ -129,7 +129,7 @@ select * from product
                         <div class="BNitem Bitem3">
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
-                                    <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <figcaption>${rs.rows[2]['PRODUCT_NM']}<hr> ${rs.rows[2]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[2]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
@@ -149,7 +149,7 @@ select * from product
                         <div class="BNitem Bitem4">
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
-                                    <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <figcaption>${rs.rows[3]['PRODUCT_NM']}<hr> ${rs.rows[3]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[3]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>
@@ -172,7 +172,7 @@ select * from product
                         <div class="BNitem Bitem1">    
                             <a href="#">    
                                 <div class="BNitemPic bestItem1Pic"> 
-                                    <figcaption>제품1<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <figcaption>${rs.rows[4]['PRODUCT_NM']}<hr> ${rs.rows[4]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[4]['PRODUCT_NM']}.jpg" 
                                         alt="제품사진" id="bestItemPhoto1">
                                 </div>
@@ -191,7 +191,7 @@ select * from product
                         <div class="BNitem Bitem2">  
                             <a href="#">  
                                 <div class="BNitemPic bestItem2Pic">
-                                    <figcaption>제품2<br><br> 상세설명칸<br><br> 입니다 </figcaption> 
+                                    <figcaption>${rs.rows[5]['PRODUCT_NM']}<hr> ${rs.rows[5]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[5]['PRODUCT_NM']}.jpg"
                                         alt="제품사진" id="bestItemPhoto2"> 
                                 </div>
@@ -210,7 +210,7 @@ select * from product
                         <div class="BNitem Bitem3">
                             <a href="#">
                                 <div class="BNitemPic bestItem3Pic">
-                                    <figcaption>제품3<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <figcaption>${rs.rows[6]['PRODUCT_NM']}<hr> ${rs.rows[6]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[6]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto3">
                                 </div>
@@ -230,7 +230,7 @@ select * from product
                         <div class="BNitem Bitem4">
                             <a href="#">
                                 <div class="BNitemPic bestItem1Pic">
-                                    <figcaption>제품4<br><br> 상세설명칸<br><br> 입니다 </figcaption>
+                                    <figcaption>${rs.rows[7]['PRODUCT_NM']}<hr> ${rs.rows[7]['INGREDIENT']}</figcaption>
                                     <img src="${contextPath}/resources/image/product/${rs.rows[7]['PRODUCT_NM']}.jpg"
                                     alt="제품사진" id="bestItemPhoto4">
                                 </div>

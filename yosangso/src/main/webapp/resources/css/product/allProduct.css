@@ -111,8 +111,11 @@
 
 .quickMenu {
     margin : 70px 0px 0px 0px;
-    /* background-color:darkkhaki; */
+    border-bottom: 2px solid black;
 }
+
+
+
 
 .quickMenu > a {
     width: 200px;
@@ -132,7 +135,7 @@
     width: 200px;
     /* background-color :  rgb(181, 181, 181); */
     transition-duration: 0.3s;
-    color: #2678F3;
+    /* color: #2678F3; */
     text-decoration: none;
 }
 
