@@ -1,6 +1,5 @@
 package edu.kh.yosangso.product.model.dao;
-
-import static edu.kh.yosangso.common.JDBCTemplate.*;
+import static edu.kh.yosangso.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -11,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.kh.yosangso.cart.model.vo.ShoppingCart;
+import static edu.kh.yosangso.common.JDBCTemplate.*;
 import edu.kh.yosangso.product.model.vo.Product;
 
 public class ProductDAO {
@@ -20,7 +21,6 @@ public class ProductDAO {
 	private ResultSet rs;
 	private Properties prop;
 	
-	// 기본생성자
 	public ProductDAO() {
 		try {
 			prop = new Properties();
@@ -34,93 +34,144 @@ public class ProductDAO {
 		}	
 	}
 
-	
-/*
-	public List<Product> selectProduct(Connection conn, int productNo) throws Exception {
-		
-		List<Product> list = new ArrayList<Product>();
-		
-		return null;
-	} */
-
-	/** 전제품 조회 DAO
+	/** 인체페이지 상품 리스트
 	 * @param conn
-	 * @param productNo
-	 * @return allProductList
+	 * @param part
+	 * @return
+	 * @throws Exception
 	 */
-	/*public List<Product> allProduct(Connection conn, int productNo) throws Exception {
+	public List<Product> personList(Connection conn, String part) throws Exception{
 		
-		// 결과저장용 변수 선언
-		List<Product> allProductList = new ArrayList<>();
+		List<Product> personList = new ArrayList<>();
 		
 		try {
-			//SQL 얻어오기 (product-sql.xml구문 작성함)
-			String sql = prop.getProperty("allProductList");
 			
-			// 물음표사용해서 PreparedStatement 객체 생성
+			String sql = prop.getProperty("personList");
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, productNo);
+			pstmt.setString(1, part);
 			
-			// SQL 수행 결과 (ResultSet) 반환 받기
 			rs = pstmt.executeQuery();
 			
-			//조회결과 얻어와 한 행씩 접근하여
-			// Employee 객체 생성 후에 컬럼값 옮겨 담기
-			// -> List 추가
 			while(rs.next()) {
 				Product product = new Product();
 				
-				product.setProductNo(rs.getInt("PRODUCT_NO"));
+				product.setProductImage(rs.getString("PRODUCT_IMAGE"));
 				product.setProductName(rs.getString("PRODUCT_NM"));
-				product.setPrice(rs.getInt("PRICE"));
 				
-				allProductList.add(product);		
+				personList.add(product);
 			}
-				
-		} finally {
-				close(rs);
-				close(pstmt);
-		}
 			
-		return allProductList;
-	}*/
-
-
-
-	public List<Product> allProduct(Connection conn) throws Exception  {
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
 		
-		List<Product> allProductList = new ArrayList<>();
+		return personList;
+	}
+
+
+	/**상품 정보 선택 DAO
+	 * @param conn
+	 * @param productNo
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Product> selectProduct(Connection conn, int pro) throws Exception {
+		
+		List<Product> productList = new ArrayList<>();
 		
 		try {
-			String sql = prop.getProperty("allProudct");
+			String sql = prop.getProperty("selectProduct");
 			
-			stmt = conn.createStatement();
+			pstmt = conn.prepareStatement(sql);
 			
-			rs = stmt.executeQuery(sql);
+			pstmt.setInt(1, pro);
+			
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				
 				int productNo = rs.getInt("PRODUCT_NO");
 				String productName = rs.getString("PRODUCT_NM");
+				String category = rs.getString("CATEGORY");
 				int price = rs.getInt("PRICE");
+				int stock = rs.getInt("STOCK");
+				String productDate = rs.getString("PRODUCT_DATE");
+				int sellRate = rs.getInt("SELL_RATE");
+				String explain = rs.getString("EXPLAIN");
+				String part = rs.getString("PART");
+				String img = null;
+				String imgurl = null;
+				int productCount = 0;
+
 				
-				allProductList.add(
-						new Product(productNo, productName, price));
-				
-			}
+				productList.add(
+						new Product(productNo, productName, category, price, stock, productDate, sellRate,
+								explain, part, img, imgurl )			
+						);
+
+			} 
+			
+			System.out.println(productList);
 			
 		} finally {
 			close(rs);
 			close(stmt);
 		}
-		return allProductList;
+		
+		
+		return productList;
+		
+
 	}
 
+	public int detailCart(Connection conn, ShoppingCart cart) throws Exception{
+		
+		int result =0;
+		
+		try {
+			String sql = prop.getProperty("DetailAddCart");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cart.getProductNo());
+			pstmt.setInt(2, cart.getBuyingRate());
+			pstmt.setInt(3, cart.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 
-
-
-	
-	
-	
+	public int detailPurchase(Connection conn, ShoppingCart cart)  throws Exception{
+		
+		int result =0;
+		
+		try {
+			String sql = prop.getProperty("DetailPurchase");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, cart.getProductNo());
+			pstmt.setInt(2, cart.getBuyingRate());
+			pstmt.setInt(3, cart.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 	
 }

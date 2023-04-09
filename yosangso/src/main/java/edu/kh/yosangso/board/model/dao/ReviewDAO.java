@@ -5,9 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import edu.kh.yosangso.board.model.vo.Review;
 import edu.kh.yosangso.board.model.vo.ReviewImage;
 
 import static edu.kh.yosangso.common.JDBCTemplate.*;
@@ -40,8 +42,8 @@ public class ReviewDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public int reviewAdd(Connection conn, String reviewContent, int reviewRate) throws Exception{
-		
+	public int reviewAdd(Connection conn, String reviewContent, int reviewAddRate) throws Exception{
+		System.out.println("리뷰작성 DAO 들어옴");
 		int result = 0;
 		
 		try {
@@ -51,7 +53,7 @@ public class ReviewDAO {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, reviewContent);
-			pstmt.setInt(2, reviewRate);
+			pstmt.setInt(2, reviewAddRate);
 			
 			
 			result = pstmt.executeUpdate();
@@ -59,6 +61,7 @@ public class ReviewDAO {
 		}finally {
 			close(pstmt);
 		}
+		System.out.println("리뷰작성 DAO 나감");
 		return result;
 	}
 
@@ -74,27 +77,46 @@ public class ReviewDAO {
 	public int reviewImageAdd(Connection conn, ReviewImage image) throws Exception{
 		
 		int result = 0;
-		
+		System.out.println("리뷰 IMG DAO 진입");
 		try {
 			String sql = prop.getProperty("reviewImageAdd");
 			
 			pstmt = conn.prepareStatement(sql);
 			
-			
-			
 			pstmt.setString(1, image.getImageReName());
 			pstmt.setString(2,  image.getImageOriginal());
-			pstmt.setInt(3, image.getImageLevel());
-			pstmt.setInt(4, image.getReviewdNo());
+			//pstmt.setInt(3, image.getImageLevel());
+			pstmt.setInt(3, image.getReviewNo());
 			
 			result = pstmt.executeUpdate();
-			
+			System.out.println("리뷰 IMG DAO 업데이트");
 		}finally {
 			close(pstmt);
 		}
-		
-		
+		System.out.println("리뷰 IMG DAO 나옴");
 		return result;
+	}
+
+
+
+
+
+	public List<Review> selectReview(Connection conn, int pro) {
+		
+		List<Review> reviewList = new ArrayList<>();
+		
+		try {
+			 
+			String sql = prop.getProperty("selectReview");
+			
+			
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+
+		}
+		return null;
 	}
 
 }

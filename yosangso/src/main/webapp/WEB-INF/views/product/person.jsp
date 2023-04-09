@@ -31,7 +31,7 @@
                     </div>
                     <section class="content-box-left-title">
                         <div class="person-img">
-                            <img src="#" alt="인체이미지" width="80px">
+                            <img src="${contextPath}/resources/image/index/인체이미지누끼.png" alt="인체이미지" width="80px">
                             <img src="#" alt="두뇌" class="person-img-heart">
                         </div>
                         <div>
@@ -101,8 +101,7 @@
 	
 			
 			
-			
-                <section class="content-box-right-content  people-bg">
+                <section class="content-box-right-content people-bg">
                     <section>
                         <h2 id="right-title" class="title"></h2>
                         <div id="right-sub-title"></div>

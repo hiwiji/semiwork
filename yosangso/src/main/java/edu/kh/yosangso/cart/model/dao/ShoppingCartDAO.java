@@ -35,7 +35,7 @@ public class ShoppingCartDAO {
 	}
 
 
-	public List<ShoppingCart> shoppingCart(Connection conn, String userNum) throws Exception{
+	public List<ShoppingCart> shoppingCart(Connection conn, int userNum) throws Exception{
 		
 		List<ShoppingCart> cartList = new ArrayList<>();
 		
@@ -45,7 +45,7 @@ public class ShoppingCartDAO {
 			
 			pstmt = conn.prepareStatement(sql); 
 			
-			pstmt.setString(1, userNum);
+			pstmt.setInt(1, userNum);
 			
 			rs = pstmt.executeQuery();
 			
@@ -94,7 +94,8 @@ public class ShoppingCartDAO {
 		try {
 			String sql = prop.getProperty("updateCount");
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, count -1);
+			count = count-1;
+			pstmt.setInt(1, count);
 			pstmt.setString(2, memberNo);
 			pstmt.setString(3, productNo);
 			
@@ -115,7 +116,8 @@ public class ShoppingCartDAO {
 		try {
 			String sql = prop.getProperty("updateCount");
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, count + 1);
+			count = count+1;
+			pstmt.setInt(1, count);
 			pstmt.setString(2, memberNo);
 			pstmt.setString(3, productNo);
 			

@@ -148,9 +148,6 @@
 
 
 
-
-
-
 /*********************제품 부분 css  ****************/
 
 
@@ -197,8 +194,7 @@
 
 
 
-
-
+/* 제품 */
 .BNitem {
     display:flex;
     flex-basis:25%;
@@ -269,9 +265,9 @@
 
 /* 제품명 글씨 */
 .BNitemName{
-    flex-basis: 20%;
-    padding: 5px;
-    font-size: 12px;
+    flex-basis: 10%;
+    padding: 4px;
+    font-size: 14px;
     position: relative;
     /* z-index : -1; */
 
@@ -289,8 +285,6 @@
     display: flex;
     height: 140px;
 }
-
-
 
 /************************* 제품  호버값  ******************/
 .BNitem > a {
@@ -312,16 +306,16 @@
 
 
 
-/* 자세히보기 오쏘뮬이윤하이하이 */
+/* 검은화면 글씨 설정 */
 .BNitem > a > .BNitemPic > figcaption {
     position: absolute;
     bottom: 250px;
-    left: 140px;
+    left: 0px;
     /* top: 50px; */
     margin : auto;
     z-index: 1;
     color : #fff;
-    font-size: 12px;
+    font-size: 11px;
     text-align : center;
     transition: all .5s;
     

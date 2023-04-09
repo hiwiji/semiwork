@@ -3,23 +3,29 @@
 <properties>
 	<comment>product-sql.xml</comment>
 
-
-
-	<!-- 전제품 조회 -->
-	<!--  <entry key="allProductList">
-	SELECT PRODUCT_IMAGE, PRODUCT_NM, PRICE
+	<entry key="selectProduct">
+	SELECT PRODUCT_NO, PRODUCT_NM, CATEGORY , PRICE , STOCK , PRODUCT_DATE , SELL_RATE , EXPLAIN , PART
 	FROM PRODUCT
-	WHERE PRODUCT_NO = ?;
-	</entry>-->
-	
-	
-	<entry key="allProudct">
-		SELECT PRODUCT_NO, PRODUCT_NM, PRICE
-		FROM PRODUCT;
+	WHERE PRODUCT_NO = ? 
 	</entry>
 	
+	<entry key="DetailAddCart">
+	INSERT INTO CART (CART_NO , PRODUCT_NO, BUYING_RATE, MEMBER_NO)
+	VALUES (CART_SEQ.NEXTVAL, ?, ?, ?)
+	</entry>
 	
+	<entry key="DetailPurchase">
+	INSERT INTO CART (CART_NO , PRODUCT_NO, BUYING_RATE, MEMBER_NO)
+	VALUES (CART_SEQ.NEXTVAL, ?, ?, ?)
+	</entry>
 	
+	<entry key="personList">
+		SELECT PRODUCT_IMAGE, PRODUCT_NM
+		FROM PRODUCT
+		WHERE PART = ?
+	</entry>
+	<entry key=""></entry>
+	<entry key=""></entry>
 	<entry key=""></entry>
 	<entry key=""></entry>
 	<entry key=""></entry>

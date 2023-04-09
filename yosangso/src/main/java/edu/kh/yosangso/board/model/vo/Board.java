@@ -18,6 +18,7 @@ public class Board {
 	private String boardContent;
 	private String boardDate;
 	private String memberName;
+	private int memberNo;
 }
 
 

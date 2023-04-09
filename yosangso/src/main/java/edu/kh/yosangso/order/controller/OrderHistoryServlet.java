@@ -14,9 +14,9 @@ public class OrderHistoryServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//String path = "/WEB-INF/views/order/orderHistory.jsp";
+		String path = "/WEB-INF/views/order/orderHistory.jsp";
 		
-		//req.getRequestDispatcher(path).forward(req, resp);
+		req.getRequestDispatcher(path).forward(req, resp);
 
 	}
 }

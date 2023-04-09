@@ -2,14 +2,17 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>board-sql.xml</comment>
-
-	<entry key=""></entry>
-	<entry key=""></entry>
-	<entry key=""></entry>
-	<entry key=""></entry>
-	<entry key=""></entry>
-	<entry key=""></entry>
-	<entry key=""></entry>
+	
+	<entry key="reviewAdd">
+		INSERT INTO REVIEW VALUES(27, ?, DEFAULT, ?, 1, 1)
+	</entry>
+	
+	
+	
+	<entry key="reviewImageAdd">
+		INSERT INTO REVIEW_IMG VALUES(REVIEW_IMG_SEQ.NEXTVAL, ?, ?,1,5, ?)
+	</entry>
+	
 
 
 </properties>

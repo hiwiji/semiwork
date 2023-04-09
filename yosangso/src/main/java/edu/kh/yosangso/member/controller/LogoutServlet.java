@@ -11,14 +11,13 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/member/logout")
 public class LogoutServlet extends HttpServlet{
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		HttpSession session = req.getSession();
 		
+//		Member member = (Member)session.removeAttribute("loginMember");
 		session.invalidate();
 		
-		resp.sendRedirect( req.getContextPath() );
+		resp.sendRedirect(req.getContextPath());
 	}
 }

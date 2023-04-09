@@ -112,9 +112,8 @@
 .quickMenu {
     margin : 70px 0px 0px 0px;
     border-bottom: 2px solid black;
+    
 }
-
-
 
 
 .quickMenu > a {
@@ -123,11 +122,7 @@
     border: solid 1px black;
     align-items: center;
     text-align: center;
-
-    /* font-weight: bold; */
-    color: black;
-  
-   
+    color: black;   
 }
 
 
@@ -135,6 +130,7 @@
     width: 200px;
     transition-duration: 0.5s;
     text-decoration: none;
+    
 }
 
 .mainFont:hover {
@@ -150,7 +146,6 @@
     padding: 10px;
     font-weight: bold;
     font-size: 16px;
-    /* border-bottom: 1px solid grey; */
 }
 
 
@@ -274,8 +269,8 @@
 
 /* 제품명 글씨 */
 .BNitemName{
-    flex-basis: 20%;
-    padding: 5px;
+    flex-basis: 10%;
+    padding: 4px;
     font-size: 14px;
     position: relative;
     /* z-index : -1; */
@@ -286,8 +281,6 @@
     /* text-decoration: underline; */
     /* background-color: purple; */
 }
-
-
 
 
 /********************* 페이지네이션 부분 css  ****************/
@@ -367,7 +360,7 @@
 .BNitem > a > .BNitemPic > figcaption {
     position: absolute;
     bottom: 250px;
-    left: 10px;
+    left: 0px;
     /* top: 50px; */
     margin : auto;
     z-index: 1;
