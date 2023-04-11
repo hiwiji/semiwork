@@ -1,9 +1,22 @@
 // 게시물을 클릭했을 시, 내가 등록한 글이면 (1)
 // 수정, 삭제 버튼을 통해서 수장, 삭제 구현 (2)
-const inquiryUpdate = document.getElementById("inquiryUpdate"); // 수정 버튼 
 const questionP = document.getElementById("questionP"); // 답변 박스안에 문의 내용
-const inquiryDelete = document.getElementById("inquiryDelete"); // 삭제 버튼
 const answerInnerBox = document.getElementById("answerInnerBox");  // 답변박스
+const inquiryUpdate = document.querySelector(".inquiryUpdate"); // 수정버튼
+const inquiryDelete = document.querySelector(".inquiryDelete"); // 삭제버튼
+
+// 업데이트 확인 버튼 생겨야함 
+const updateConfirm = document.createElement("button"); // 업데이트 확인 버튼 (새로운 요소))
+const cancleUpdateConfirm = document.createElement("button"); // 업데이트 취소버튼 (새로운 요소))
+const textAreaP = document.createElement("textarea"); // 텍스트 에리어 (새로운 요소))
+
+const questionInnerBox = document.querySelector(".questionInnerBox");
+//const questionInnerBox = document.getElementById("questionInnerBox"); // 앤서 박스 안 답변박스
+const quetionInnerBoxBtn = document.getElementById("quetionInnerBoxBtn"); // 앤서 박스 안 기존 버튼박스
+
+
+
+
 
 // 삭제기능
 function deleteBoard(boardNo){
@@ -36,34 +49,67 @@ function deleteBoard(boardNo){
     //const boardNo = document.getElementById("mapBoardNo");
 
 
-function updateBoard(boardNo) {
-    console.log("boardNo:::",boardNo);
-    questionP.innerText = "";
+function updateBoard(e, boardNo) {
 
-    let textAreaP = document.createElement("textarea");
-    questionP.append(textAreaP);
+    console.log(e);
+
+
+    e.parentElement.previousElementSibling.lastElementChild.remove(); // 기존 질문 삭제
     
-    textAreaP.setAttribute('cols', 130);
-    textAreaP.setAttribute('rows', 10);
     
-    // 업데이트 확인 버튼 생겨야함 
-    const updateConfirm = document.createElement("button"); // 업데이트 확인 버튼
+
+    e.parentElement.previousElementSibling.append(textAreaP);
+
+    textAreaP.setAttribute('placeholder', '수정하실 문의를 작성해주세요.');
+    
+    textAreaP.className ="answerBoxTextArea";
+
+   
+    
+    
 
     // 기존에 삭제버튼,수정 버튼 삭제하고 업데이트 확인 버튼 생기게 하자
-    inquiryDelete.remove();
-    inquiryUpdate.remove();
+    e.previousElementSibling.remove();
+    e.remove();
     
     // 업데이트 확인 버튼 생기게 하기
     // 답변 박스쪽에 생기게 하기
+    console.log(e.parentElement);
 
-    answerInnerBox.append(updateConfirm);
-    updateConfirm.innerText = "수정확인";
+
+    // if(e.parentElement == null){
+    //     console.log("if 문 진입");
+    //     // e.parentNode가 null이 아니면 e의 부모 엘리먼트를 추가해줍니다.
+    //     if(e.parentNode) {
+    //         e.parentNode.append(quetionInnerBoxBtn);
+    //     } else {
+    //         console.log("e.parentNode가 null입니다.");
+    //     }
+    // }else{
+    //     console.log("else 문 진입");
+    //     alert("asd");
+    // }
+    
+
+
+
+    e.append(updateConfirm);
+    updateConfirm.innerText = "확인";
     updateConfirm.setAttribute('type', 'button');
+    updateConfirm.className = "btnUpdate";
+
+
+    // 업데이트 취소 버튼도 생기게 하기
+    e.parentElement.append(cancleUpdateConfirm);
+    cancleUpdateConfirm.innerText = "취소";
+    cancleUpdateConfirm.setAttribute('type', 'button');
+    cancleUpdateConfirm.className = "btnCancel";
+    cancleUpdateConfirm.setAttribute('onclick', 'cloneP()');
 
     // 수정확인 버튼을 누르면 글이 수정될 수 있게 해야함
 
     if(updateConfirm != null){ // 업데이트 확인 버튼이 null이 아닐 때,
-        updateConfirm.addEventListener("click", e =>{
+        updateConfirm.addEventListener("click", function() {
             if(textAreaP.value == ""){
                 alert("내용을 입력해주세요.");
             }else{
@@ -75,8 +121,6 @@ function updateBoard(boardNo) {
                     success : function(result){
                         console.log(result);
                         if(result > 0){
-                            console.log(result);
-                            console.log("둔하시네요.");
                             alert("게시물 수정이 완료되었습니다.");
                             location.reload();
                         }else{
@@ -94,3 +138,26 @@ function updateBoard(boardNo) {
         }); // 수정 확인 버튼 클릭 이벤트 구문 끝
     } // 수정확인 if문 끝 
 }
+
+
+
+
+
+// 수정 취소 버튼을 눌렀을 때, 기존 문의내용 불러오는 함수
+function cloneP(){
+    if(questionP != null){
+        questionInnerBox.append(questionP);
+        quetionInnerBoxBtn.append(inquiryDelete);
+        quetionInnerBoxBtn.append(inquiryUpdate);
+
+        textAreaP.remove();
+        updateConfirm.remove();
+        cancleUpdateConfirm.remove();
+    }
+    else{
+        alert("실패!");
+    }
+}
+
+
+

@@ -182,7 +182,13 @@
 
 
 
-
+#reviewAddBox{
+    display: flex;
+    /* padding-left: 50px; */
+    margin-left: 60px;
+    justify-content: center;
+    align-items: center;
+}
 
 
 .reviewListBox{
@@ -197,17 +203,21 @@
     text-decoration: none;
     color: rgb(192, 192, 192);
     margin: 0 10px;
+    font-size : 20px;
 }
 
 li{
 	list-style: none;
 }
 
-a{
+<<<<<<< HEAD
+=======
+/* .reviewListBox a{
 	font-size : 20px;
 	
-}
+} */
 
+>>>>>>> develop
 .active > a{
 	font-size: 22px;
 	color : black;
@@ -220,15 +230,25 @@ a{
 #reviewAdd{
     width: 100px;
     height: 30px;
-    /* border:1px solid #575C63; */
     border-radius: 8px;
-    background-color: white;
-    color: #2678F3;
-    font-weight: bold;
-    margin-top: 40px;
+    /* background-color: #2678F3; */
+    border: 3px solid #6aafe6;
+    color: #6e6e6e;
 }
 
-#reviewUpdate{
+
+#reviewAdd:hover{
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#reviewAdd:active{
+    transform: scale(1.5);
+}
+
+
+/* #reviewUpdate{
     display: none;
     width: 70px;
     height: 50px;
@@ -236,4 +256,4 @@ a{
     border-radius: 8px;
     background-color: #2678F3;
     color: white;
-}
+} */

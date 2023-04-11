@@ -35,15 +35,16 @@
                 
                 <!-- 컨텐츠 내용 오른쪽 -->
                 <section  class="content-box-right">
-
+                        
+                    
 
                             <!-- 컨텐트 오른쪽 영역 -->
                             <section class="right">
                                 <!-- 컨텐트 공백 -->
                                 <div></div>
-        
+                                
                                 <div>
-        
+                                    
                                     <div class="myReview">
                                        	나의 리뷰
                                     </div>
@@ -53,39 +54,41 @@
                                         <div class="rigthReviewTop">
                                             <div><a href="reviewList?pageNum=1&amount=3" class="inner-review-tab">작성 가능한 리뷰 (${total })</a></div>
                                             <div><a href="reviewDoneList?pageNum=1&amount=3" class="inner-review-tab">작성한 리뷰 (${doneTotal })</a></div>
+                                           
                                         </div>
 
                                         <div class="rightReivewContent">
-                                    <form>
-											<c:forEach var="list" items="${list}">
-                                            <div class="rightProductImg"> 
+                                            
+                                            <form action="reviewWriting">
+                                                <c:forEach var="list" items="${list}">
+                                                    <div class="rightProductImg"> 
 
-                                                <div>
-                                                    <img src="${contextPath}/resources/image/all/${list.productName}.jpg" alt="#" id="reviewImages">
-                                                </div>
-        
-                                                <div class="product-info">
-                                                	<div>
-                                                		<p>${list.productDate}일 주문</p>
-                                                	</div>
-                                                    <div>
-                                                    	<p>${list.productName}</p>
+                                                        <div>
+                                                            <img src="${contextPath}/resources/image/all/${list.productName}.jpg" alt="#" id="reviewImages">
+                                                        </div>
+                
+                                                        <div class="product-info">
+                                                            <div>
+                                                                <p>${list.orderDate}일 주문</p>
+                                                            </div>
+                                                            <div>
+                                                                <p>${list.productName}</p>
+                                                            </div>
+                                                        </div>
+                                                            <input type="hidden" name="orderNo" value="${list.orderNo}">
+                                                        <div id="reviewAddBox">
+                                                            <button type="submit" id="reviewAdd">리뷰작성</button><br><br>
+                                                        </div>
+
                                                     </div>
-                                                </div>
-        
-                                                <div>
-                                                    <button id="reviewAdd">리뷰작성</button><br><br>
-                                                </div>
-
-                                            </div>
-                                            </c:forEach>
-                                    </form> 
+                                                </c:forEach>
+                                            </form> 
 
                                         </div>
                                     </div>
                                     <div class="reviewListBox">
                                     <c:if test="${pageVo.prev}">
-                                        <a href="reviewList?pageNum=${pageVo.startPage - 1 }&amount=${pageVo.amount}">이전</a> 
+                                        <a href="reviewList?pageNum=${pageVo.startPage - 1 }&amount=${pageVo.amount}">&lt;</a> 
                                     </c:if>
                         			<c:forEach var="num" begin="${pageVo.startPage }" end="${pageVo.endPage }">
 	                        			<li  class="${pageVo.pageNum eq num ? 'active' : '' }">
@@ -93,7 +96,7 @@
 	                        			</li>
                         			</c:forEach>
                          			<c:if test="${pageVo.next }">
-                        				<a href="reviewList?pageNum=${pageVo.endPage + 1 }&amount=${pageVo.amount}">다음</a>
+                        				<a href="reviewList?pageNum=${pageVo.endPage + 1 }&amount=${pageVo.amount}">&gt;</a>
                         			</c:if>
                                     </div>
         
@@ -125,5 +128,8 @@
    
     <!-- main.js 연결 -->
     <script src="${contextPath}/resources/js/main.js"></script>
+
+     <!-- reviewList.js 연결 -->
+     <script src="${contextPath}/resources/js/review/reviewList.js"></script>
 </body>
 </html>

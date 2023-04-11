@@ -1,3 +1,7 @@
-/.metadata/
+.metadata/
+Servers/
+*.class
+*.classpath
+/target/
+/bin/
 .DS_Store
-Servers
